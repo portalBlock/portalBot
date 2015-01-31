@@ -1,0 +1,17 @@
+{
+  "servers": [
+    {
+      "host": "0.0.0.0",
+      "port": 6667,
+      "username": "TestingBot",
+      "password": "test",
+      "owner": "portalBlock",
+      "defaultPrefix": "`",
+      "channels": [
+        {
+          "name": "#Lobby"
+        }
+      ]
+    }
+  ]
+}
