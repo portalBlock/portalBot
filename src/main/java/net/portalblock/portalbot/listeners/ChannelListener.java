@@ -1,11 +1,9 @@
 package net.portalblock.portalbot.listeners;
 
-import lombok.Getter;
 import net.portalblock.portalbot.Bot;
 import net.portalblock.portalbot.command.CommandManager;
 import net.portalblock.portalbot.config.ChannelSettings;
 import net.portalblock.portalbot.config.ServerSettings;
-import net.portalblock.portalbot.senders.CommandSender;
 import net.portalblock.portalbot.senders.UserCommandSender;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;

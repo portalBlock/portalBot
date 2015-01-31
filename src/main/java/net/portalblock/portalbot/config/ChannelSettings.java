@@ -3,11 +3,8 @@ package net.portalblock.portalbot.config;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import lombok.Getter;
-import net.portalblock.portalbot.PortalBot;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.pircbotx.Channel;
-import org.pircbotx.User;
 
 import java.util.ArrayList;
 

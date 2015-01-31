@@ -1,7 +1,6 @@
 package net.portalblock.portalbot.command;
 
 import net.portalblock.portalbot.command.commands.Echo;
-import net.portalblock.portalbot.config.ServerSettings;
 import net.portalblock.portalbot.senders.CommandSender;
 
 import java.util.HashMap;
