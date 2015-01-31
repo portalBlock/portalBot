@@ -1,5 +1,6 @@
 package net.portalblock.portalbot.listeners;
 
+import net.portalblock.portalbot.config.ChannelSettings;
 import net.portalblock.portalbot.config.ServerSettings;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -7,6 +8,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.hooks.types.GenericMessageEvent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,9 +31,9 @@ public class FeatureListener extends ListenerAdapter {
     @Override
     public void onJoin(JoinEvent event) throws Exception {
         if(event.getUser() == null) return;
-        if(!event.getUser().getLogin().equalsIgnoreCase(serverSettings.getUsername())){
-            if(serverSettings.isStrictStaff(event.getChannel().getName(), event.getUser()))
-                event.getBot().sendIRC().mode(event.getChannel().getName(), "+ohv " + event.getUser().getNick());
+        System.out.println(event.getUser().getNick() + " has joined " + event.getChannel().getName());
+        if(event.getUser().getLogin().equalsIgnoreCase(serverSettings.getUsername())){
+            serverSettings.addChannel(event.getChannel().getName(), new ChannelListener(ChannelSettings.makeDefaults(event.getChannel().getName(), serverSettings), serverSettings));
         }
     }
 

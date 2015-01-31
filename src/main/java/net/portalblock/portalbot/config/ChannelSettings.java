@@ -1,8 +1,11 @@
 package net.portalblock.portalbot.config;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import lombok.Getter;
 import net.portalblock.portalbot.PortalBot;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.pircbotx.Channel;
 import org.pircbotx.User;
 
@@ -30,6 +33,17 @@ public class ChannelSettings {
         for(String s : staff)
             if(s.equalsIgnoreCase(name)) return true;
         return false;
+    }
+
+
+    public static ChannelSettings makeDefaults(String name, ServerSettings settings){
+        JSONObject object = new JSONObject();
+        object.put("name", name);
+        object.put("prefix", settings.getDefaultPrefix());
+        JSONArray staff = new JSONArray();
+        staff.put(settings.getOwner());
+        object.put("staff", staff);
+        return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().fromJson(object.toString(), ChannelSettings.class);
     }
 
 }

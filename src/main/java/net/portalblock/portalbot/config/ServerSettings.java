@@ -42,7 +42,10 @@ public class ServerSettings {
     }
 
     public void addChannel(String chan, ChannelListener channelListener){
-        channelListeners.put((chan.startsWith("#") ? chan.toLowerCase() : "#" + chan.toLowerCase()), channelListener);
+        chan = (chan.startsWith("#") ? chan.toLowerCase() : "#" + chan.toLowerCase());
+        if(channelListeners.containsKey(chan.toLowerCase())) return;
+        channelListeners.put(chan, channelListener);
+        if(!channels.contains(channelListener.getChannelSettings())) channels.add(channelListener.getChannelSettings());
     }
 
     public ChannelListener[] getChannelListeners(){

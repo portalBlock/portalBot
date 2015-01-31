@@ -1,5 +1,6 @@
 package net.portalblock.portalbot.listeners;
 
+import lombok.Getter;
 import net.portalblock.portalbot.Bot;
 import net.portalblock.portalbot.command.CommandManager;
 import net.portalblock.portalbot.config.ChannelSettings;
@@ -40,4 +41,7 @@ public class ChannelListener extends ListenerAdapter {
         return settings.getName();
     }
 
+    public ChannelSettings getChannelSettings() {
+        return settings;
+    }
 }
