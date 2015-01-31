@@ -15,4 +15,6 @@ public interface CommandSender {
 
     public boolean isStrictStaff();
 
+    public String getHostMask();
+
 }

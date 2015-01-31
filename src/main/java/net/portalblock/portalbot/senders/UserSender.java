@@ -7,15 +7,16 @@ import net.portalblock.portalbot.Bot;
  */
 public class UserSender implements CommandSender {
 
-    private String name;
+    private String name, hostmask;
     private Bot bot;
     private boolean staff, strictStaff;
 
-    public UserSender(String name, Bot bot, boolean staff, boolean strictStaff) {
+    public UserSender(String name, Bot bot, boolean staff, boolean strictStaff, String hostmask) {
         this.name = name;
         this.bot = bot;
         this.staff = staff;
         this.strictStaff = strictStaff;
+        this.hostmask = hostmask;
     }
 
     @Override
@@ -41,6 +42,11 @@ public class UserSender implements CommandSender {
     @Override
     public boolean isStrictStaff() {
         return strictStaff;
+    }
+
+    @Override
+    public String getHostMask() {
+        return null;
     }
 
     public Bot getBot(){

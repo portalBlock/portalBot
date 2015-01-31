@@ -14,6 +14,8 @@ import java.util.ArrayList;
  */
 public class PortalBot {
 
+    public static final String HOSTMASK_REGEX = "(.)+!(.)+@(.)+";
+
     @Getter private static PortalBot instance;
 
     public static void main(String[] args){

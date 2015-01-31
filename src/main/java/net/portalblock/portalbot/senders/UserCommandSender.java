@@ -10,8 +10,8 @@ public class UserCommandSender extends UserSender {
 
     private Channel channel;
 
-    public UserCommandSender(String name, Channel channel, Bot bot, boolean staff, boolean strictStaff) {
-        super(name, bot, staff, strictStaff);
+    public UserCommandSender(String name, Channel channel, Bot bot, boolean staff, boolean strictStaff, String hostmask) {
+        super(name, bot, staff, strictStaff, hostmask);
         this.channel = channel;
     }
 

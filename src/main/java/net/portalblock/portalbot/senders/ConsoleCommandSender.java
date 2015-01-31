@@ -29,4 +29,9 @@ public class ConsoleCommandSender implements CommandSender {
     public boolean isStrictStaff() {
         return true;
     }
+
+    @Override
+    public String getHostMask() {
+        return "CONSOLE";
+    }
 }

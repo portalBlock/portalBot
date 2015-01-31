@@ -68,6 +68,7 @@ public class ServerSettings {
         builder.addListener(new PrivateMessageListener(settings));
         builder.addServer(new Configuration.ServerEntry(settings.getHost(), settings.getPort()));
         builder.setMessageDelay(250);
+        builder.setRealName(settings.getUsername() + " - Operated by " + settings.getOwner());
         return builder.buildConfiguration();
     }
 
