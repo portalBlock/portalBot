@@ -63,6 +63,7 @@ public class ServerSettings {
         builder.addListener(new ListenerDispatcher(settings));
         builder.addListener(new FeatureListener(settings));
         builder.addServer(new Configuration.ServerEntry(settings.getHost(), settings.getPort()));
+        builder.setMessageDelay(250);
         return builder.buildConfiguration();
     }
 
