@@ -38,8 +38,7 @@ public class ServerSettings {
     }
 
     public boolean isStrictStaff(String chan, User user){
-         //return (isStaff(chan, user.getLogin()) && user.isVerified());
-        return isStaff(chan, user.getLogin());
+         return (isStaff(chan, user.getLogin()) && user.isVerified());
     }
 
     public void addChannel(String chan, ChannelListener channelListener){
