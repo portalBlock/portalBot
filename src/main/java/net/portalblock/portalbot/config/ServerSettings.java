@@ -5,6 +5,7 @@ import lombok.Getter;
 import net.portalblock.portalbot.ListenerDispatcher;
 import net.portalblock.portalbot.listeners.ChannelListener;
 import net.portalblock.portalbot.listeners.FeatureListener;
+import net.portalblock.portalbot.listeners.PrivateMessageListener;
 import org.pircbotx.Configuration;
 import org.pircbotx.User;
 
@@ -64,6 +65,7 @@ public class ServerSettings {
         }
         builder.addListener(new ListenerDispatcher(settings));
         builder.addListener(new FeatureListener(settings));
+        builder.addListener(new PrivateMessageListener(settings));
         builder.addServer(new Configuration.ServerEntry(settings.getHost(), settings.getPort()));
         builder.setMessageDelay(250);
         return builder.buildConfiguration();
