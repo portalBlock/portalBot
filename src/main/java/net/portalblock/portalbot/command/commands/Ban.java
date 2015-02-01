@@ -36,6 +36,6 @@ public class Ban extends Command {
                 stringBuffer.append(args[i]).append(" ");
             reason = stringBuffer.toString().trim();
         }
-        ucs.getBot().kick(ucs.getChannelName(), args[0], reason);
+        ucs.getBot().kick(ucs.getChannelName(), args[0], reason + " (" + ucs.getName() + ")");
     }
 }

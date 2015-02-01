@@ -14,11 +14,6 @@ public class Bot extends PircBotX {
     public Bot(Configuration configuration, ServerSettings settings) {
         super(configuration);
         this.serverSettings = settings;
-        try{
-            connect();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
     }
 
     public void kick(String chan, String nick, String reason){

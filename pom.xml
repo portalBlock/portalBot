@@ -82,10 +82,12 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>$PROJECT.ARTIFACTID$</finalName>
+                            <finalName>${project.artifactId}</finalName>
                             <artifactSet>
                                 <includes>
-                                    <include></include>
+                                    <include>org.pircbotx:pircbotx</include>
+                                    <include>org.json:json</include>
+                                    <include>com.google.code.gson:gson</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

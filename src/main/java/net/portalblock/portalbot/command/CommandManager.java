@@ -25,6 +25,7 @@ public class CommandManager {
         commands.put("unmute", new UnMute());
         commands.put("msg", new Msg());
         commands.put("join", new Join());
+        commands.put("stop", new Stop());
     }
 
     public void handle(CommandSender sender, String msg){
