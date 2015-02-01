@@ -40,7 +40,7 @@ public class ServerSettings {
     }
 
     public boolean isStrictStaff(String chan, User user){
-         return (isStaff(chan, user.getLogin()) && user.isVerified());
+         return (isStaff(chan, (user.getLogin().startsWith("~") ? user.getLogin().replaceFirst("~", "") : user.getLogin())) && user.isVerified());
     }
 
     public void addChannel(String chan, ChannelListener channelListener){
@@ -69,7 +69,7 @@ public class ServerSettings {
         builder.addListener(new PrivateMessageListener(settings));
         builder.addListener(new LoggingListener());
         builder.addServer(new Configuration.ServerEntry(settings.getHost(), settings.getPort()));
-        builder.setMessageDelay(250);
+        builder.setMessageDelay(0);
         builder.setRealName(settings.getUsername() + " - Operated by " + settings.getOwner());
         return builder.buildConfiguration();
     }

@@ -48,7 +48,7 @@ public class PrivateMessageListener extends ListenerAdapter implements Ignorable
         if(event.getUser() == null) return;
         String msg = event.getMessage();
         if(msg.startsWith(serverSettings.getDefaultPrefix())) msg = msg.replaceFirst(serverSettings.getDefaultPrefix(), "");
-        boolean staff = event.getUser().isVerified()&&event.getUser().getLogin().equals(serverSettings.getOwner());
+        boolean staff = event.getUser().isVerified()&&event.getUser().getNick().equals(serverSettings.getOwner());
         Bot bot = event.getBot();
         manager.handle(new UserSender(event.getUser().getNick(), bot, staff, staff, event.getUserHostmask().getNick() + "!" + event.getUserHostmask().getLogin() + "@" + event.getUserHostmask().getHostname()), msg);
     }

@@ -30,7 +30,7 @@ public class FeatureListener extends ListenerAdapter {
     @Override
     public void onJoin(JoinEvent event) throws Exception {
         if(event.getUser() == null) return;
-        if(event.getUser().getLogin().equalsIgnoreCase(serverSettings.getUsername())){
+        if(event.getUser().getNick().equalsIgnoreCase(serverSettings.getUsername())){
             serverSettings.addChannel(event.getChannel().getName(), new ChannelListener(ChannelSettings.makeDefaults(event.getChannel().getName(), serverSettings), serverSettings));
         }
     }

@@ -51,10 +51,13 @@ public class ChannelListener extends ListenerAdapter implements Ignorable {
 
     @Override
     public void onMessage(MessageEvent event) throws Exception {
-        if(event.getUser() == null) return;
+        if(event.getUser() == null){
+            System.out.println("Null User onMessage: " + event);
+            return;
+        }
         Bot bot = event.getBot();
         UserCommandSender ucs = new UserCommandSender(event.getUser().getNick(), event.getChannel(), bot,
-                settings.isStaff(event.getUser().getLogin()),
+                settings.isStaff(event.getUser().getNick()),
                 serverSettings.isStrictStaff(event.getChannel().getName(), event.getUser()),
                 event.getUserHostmask().getNick() + "!" + event.getUserHostmask().getLogin() + "@" + event.getUserHostmask().getHostname());
         moderator.receiveEvent(new EventWrapper(ucs, bot, event.getChannel(), event.getMessage()));

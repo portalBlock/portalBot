@@ -25,6 +25,11 @@
             <artifactId>gson</artifactId>
             <version>2.2.4</version>
         </dependency>
+        <!--dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.10</version>
+        </dependency-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -88,6 +93,9 @@
                                     <include>org.pircbotx:pircbotx</include>
                                     <include>org.json:json</include>
                                     <include>com.google.code.gson:gson</include>
+                                    <include>com.google.guava:guava</include>
+                                    <include>org.apache.commons:commons-lang3</include>
+                                    <include>org.slf4j:slf4j-api</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
