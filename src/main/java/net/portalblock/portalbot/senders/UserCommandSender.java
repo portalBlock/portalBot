@@ -28,4 +28,8 @@ public class UserCommandSender extends UserSender {
     public String getChannelName() {
         return channel.getName();
     }
+
+    public Channel getChannel() {
+        return channel;
+    }
 }

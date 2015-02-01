@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class PortalBot {
 
     public static final String HOSTMASK_REGEX = "(.)+!(.)+@(.)+";
+    public static final String MALFORMED_MASK_SUFFIX = "!*@*";
 
     @Getter private static PortalBot instance;
 

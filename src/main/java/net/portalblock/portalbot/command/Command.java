@@ -7,6 +7,8 @@ import net.portalblock.portalbot.senders.CommandSender;
  */
 public abstract class Command {
 
+    protected final String NO_PERM = "You don't have permission for that!";
+
     public abstract void execute(CommandSender sender, String[] args);
 
 }

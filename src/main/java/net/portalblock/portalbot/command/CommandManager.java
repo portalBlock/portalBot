@@ -1,8 +1,7 @@
 package net.portalblock.portalbot.command;
 
 import net.portalblock.portalbot.Ignorable;
-import net.portalblock.portalbot.command.commands.Echo;
-import net.portalblock.portalbot.command.commands.Ignore;
+import net.portalblock.portalbot.command.commands.*;
 import net.portalblock.portalbot.senders.CommandSender;
 
 import java.util.HashMap;
@@ -19,6 +18,11 @@ public class CommandManager {
         this.ignorable = ignorable;
         commands.put("echo", new Echo());
         commands.put("ignore", new Ignore(this.ignorable));
+        commands.put("unignore", new UnIgnore(this.ignorable));
+        commands.put("ban", new Ban());
+        commands.put("unban", new UnBan());
+        commands.put("mute", new Mute());
+        commands.put("unmute", new UnMute());
     }
 
     public void handle(CommandSender sender, String msg){

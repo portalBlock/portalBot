@@ -24,12 +24,11 @@ public class Ignore extends Command {
                 return;
             }
             String mask = args[0];
-            if(!mask.matches(PortalBot.HOSTMASK_REGEX)){
-                mask = mask + "!.*@.*";
-            }
+            if(!mask.matches(PortalBot.HOSTMASK_REGEX)) mask = mask + PortalBot.MALFORMED_MASK_SUFFIX;
             ignorable.ignore(mask);
+            sender.sendMessage("I am now ignoring " + mask);
         }else{
-            sender.sendMessage("No permission!");
+            sender.sendMessage(NO_PERM);
         }
     }
 }

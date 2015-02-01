@@ -31,6 +31,7 @@ public class PrivateMessageListener extends ListenerAdapter implements Ignorable
 
     @Override
     public void unignore(String hostmask) {
+        hostmask = hostmask.replace("*", ".*");
         while(ignoredMasks.contains(hostmask.toLowerCase())) ignoredMasks.remove(hostmask.toLowerCase());
     }
 
