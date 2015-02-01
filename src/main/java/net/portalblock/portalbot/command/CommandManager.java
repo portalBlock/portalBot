@@ -23,6 +23,8 @@ public class CommandManager {
         commands.put("unban", new UnBan());
         commands.put("mute", new Mute());
         commands.put("unmute", new UnMute());
+        commands.put("msg", new Msg());
+        commands.put("join", new Join());
     }
 
     public void handle(CommandSender sender, String msg){

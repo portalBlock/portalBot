@@ -20,4 +20,14 @@ public class Bot extends PircBotX {
             e.printStackTrace();
         }
     }
+
+    public void kick(String chan, String nick, String reason){
+        chan = (chan.startsWith("#") ? chan : "#" + chan);
+        sendRaw().rawLine("KICK " + chan + " " + nick + " :" + reason);
+    }
+
+    public void kick(String chan, String nick){
+        kick(chan, nick, "Kicked from the channel.");
+    }
+
 }

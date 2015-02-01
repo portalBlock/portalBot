@@ -2,6 +2,7 @@ package net.portalblock.portalbot.command.commands;
 
 import net.portalblock.portalbot.PortalBot;
 import net.portalblock.portalbot.command.Command;
+import net.portalblock.portalbot.moderating.IRCUser;
 import net.portalblock.portalbot.senders.CommandSender;
 import net.portalblock.portalbot.senders.UserCommandSender;
 
@@ -28,5 +29,13 @@ public class Ban extends Command {
         String mask = args[0];
         if(!mask.matches(PortalBot.HOSTMASK_REGEX)) mask = mask + PortalBot.MALFORMED_MASK_SUFFIX;
         ucs.getChannel().send().ban(mask);
+        String reason = "Banned from the channel.";
+        if(args.length > 1){
+            StringBuilder stringBuffer = new StringBuilder();
+            for(int i = 1; i < args.length; i++)
+                stringBuffer.append(args[i]).append(" ");
+            reason = stringBuffer.toString().trim();
+        }
+        ucs.getBot().kick(ucs.getChannelName(), args[0], reason);
     }
 }

@@ -13,13 +13,12 @@ import org.pircbotx.UserHostmask;
 /**
  * Created by portalBlock on 9/14/2014.
  */
-public class IRCUser extends UserHostmask {
+public class IRCUser {
 
     private String name;
     private int repeat, spam, caps = 0;
 
-    public IRCUser(Bot bot, String name){
-        super(bot, "", name, "*", "*");
+    public IRCUser(String name){
         this.name = name;
     }
 

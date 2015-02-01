@@ -26,7 +26,7 @@ public class Moderator {
     private Map<String, Long> chatCooldown = new HashMap<String, Long>();
 
     public void receiveEvent(EventWrapper wrapper) {
-        if(users.get(wrapper.getSender().getName().toLowerCase()) == null) users.put(wrapper.getSender().getName().toLowerCase(), new IRCUser(wrapper.getBot(), wrapper.getSender().getName()));
+        if(users.get(wrapper.getSender().getName().toLowerCase()) == null) users.put(wrapper.getSender().getName().toLowerCase(), new IRCUser(wrapper.getSender().getName()));
         //Check and use return to not spam warnings if multiple violations in one message.
         //if(checkBlacklist(wrapper)) return;
         if(checkLastSaid(wrapper)) return;
@@ -53,7 +53,7 @@ public class Moderator {
             IRCUser user = users.get(e.getSender().getName().toLowerCase());
             user.setSpam(user.getSpam() + 1);
             if(user.getSpam() >= MAX_WARNS){
-                e.getChannel().send().kick(user, "Please do not spam the chat!");
+                e.getBot().kick(e.getChannel().getName(), e.getSender().getName(), "Please do not spam the chat!");
             }else{
                 e.getSender().sendMessage(Colors.RED + "Please do not spam things! Warning " + user.getSpam() + "/" + MAX_WARNS);
             }
@@ -73,7 +73,7 @@ public class Moderator {
                 IRCUser user = users.get(e.getSender().getName().toLowerCase());
                 user.setRepeat(user.getRepeat()+1);
                 if(user.getRepeat() >= MAX_WARNS){
-                    e.getChannel().send().kick(user, "Please do not repeat things more then 3 times!");
+                    e.getBot().kick(e.getChannel().getName(), e.getSender().getName(), "Please do not repeat things more then 3 times!");
                 }else{
                     e.getSender().sendMessage(Colors.RED + "Please do not repeat things! Warning " + user.getRepeat() + "/" + MAX_WARNS);
                     lastSaid.remove(e.getSender().getName());
@@ -102,7 +102,7 @@ public class Moderator {
             IRCUser user = users.get(e.getSender().getName().toLowerCase());
             user.setCaps(user.getCaps()+1);
             if(user.getCaps() >= MAX_WARNS){
-                e.getChannel().send().kick(user, "Please do not use so much caps!");
+                e.getBot().kick(e.getChannel().getName(), e.getSender().getName(), "Please do not use so much caps!");
             }else{
                 e.getSender().sendMessage(Colors.RED + "Please don't use more then 50% caps in a message! Warning " + user.getCaps() + "/" + MAX_WARNS);
             }
@@ -136,34 +136,6 @@ public class Moderator {
 
     public static void flushUser(String name){
         users.remove(name.toLowerCase());
-    }
-
-    private class MessageEvent {
-        private String channel, sender, message;
-        private Bot bot;
-
-        public MessageEvent(String channel, String sender, String message, Bot bot) {
-            this.channel = channel;
-            this.sender = sender;
-            this.message = message;
-            this.bot = bot;
-        }
-
-        public String getChannel() {
-            return channel;
-        }
-
-        public String getSender() {
-            return sender;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public Bot getBot() {
-            return bot;
-        }
     }
 
 }
