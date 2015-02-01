@@ -5,6 +5,8 @@ import net.portalblock.portalbot.Ignorable;
 import net.portalblock.portalbot.command.CommandManager;
 import net.portalblock.portalbot.config.ChannelSettings;
 import net.portalblock.portalbot.config.ServerSettings;
+import net.portalblock.portalbot.moderating.EventWrapper;
+import net.portalblock.portalbot.moderating.Moderator;
 import net.portalblock.portalbot.senders.UserCommandSender;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
@@ -20,6 +22,7 @@ public class ChannelListener extends ListenerAdapter implements Ignorable {
     private final CommandManager manager;
     private final ServerSettings serverSettings;
     private final ArrayList<String> ignoredMasks = new ArrayList<String>();
+    private final Moderator moderator = new Moderator();
 
     public ChannelListener(ChannelSettings settings, ServerSettings serverSettings){
         this.settings = settings;
@@ -49,13 +52,14 @@ public class ChannelListener extends ListenerAdapter implements Ignorable {
     @Override
     public void onMessage(MessageEvent event) throws Exception {
         if(event.getUser() == null) return;
+        Bot bot = event.getBot();
+        UserCommandSender ucs = new UserCommandSender(event.getUser().getNick(), event.getChannel(), bot,
+                settings.isStaff(event.getUser().getLogin()),
+                serverSettings.isStrictStaff(event.getChannel().getName(), event.getUser()),
+                event.getUserHostmask().getNick() + "!" + event.getUserHostmask().getLogin() + "@" + event.getUserHostmask().getHostname());
+        moderator.receiveEvent(new EventWrapper(ucs, bot, event.getChannel(), event.getMessage()));
         if(event.getMessage().startsWith(settings.getPrefix())){
-            Bot bot = event.getBot();
-            manager.handle(new UserCommandSender(event.getUser().getNick(), event.getChannel(), bot,
-                            settings.isStaff(event.getUser().getLogin()),
-                            serverSettings.isStrictStaff(event.getChannel().getName(), event.getUser()),
-                            event.getUserHostmask().getNick() + "!" + event.getUserHostmask().getLogin() + "@" + event.getUserHostmask().getHostname()),
-                    event.getMessage().replaceFirst(settings.getPrefix(), ""));
+            manager.handle(ucs, event.getMessage().replaceFirst(settings.getPrefix(), ""));
         }
     }
 
